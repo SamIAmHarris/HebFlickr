@@ -4,17 +4,18 @@ package com.samiamharris.hebflickr.home;
  * Created by SamIAm on 3/1/18.
  */
 
-public abstract class HomeContract {
+abstract class HomeContract {
 
-    public interface View {
-
+    interface View {
+        void navigateToImageViewer();
     }
 
-    public interface Presenter {
-
+    interface Presenter {
+        void setView(HomeContract.View view);
+        void onUserTapMainButton();
     }
 
-    public interface Repository {
-        
+    interface Repository {
+
     }
 }

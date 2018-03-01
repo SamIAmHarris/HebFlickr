@@ -5,4 +5,17 @@ package com.samiamharris.hebflickr.home;
  */
 
 public class HomePresenter implements HomeContract.Presenter {
+
+    private HomeContract.View view;
+
+    @Override
+    public void setView(HomeContract.View view) {
+        this.view = view;
+    }
+
+    @Override
+    public void onUserTapMainButton() {
+        view.navigateToImageViewer();
+    }
+
 }
