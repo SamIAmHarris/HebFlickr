@@ -1,14 +1,16 @@
-package com.samiamharris.hebflickr;
+package com.samiamharris.hebflickr.home;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.samiamharris.hebflickr.R;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeContract.View {
 
 
     @BindView(R.id.button_home)
