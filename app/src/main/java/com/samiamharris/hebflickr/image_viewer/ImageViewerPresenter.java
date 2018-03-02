@@ -32,15 +32,11 @@ public class ImageViewerPresenter extends
 
             view.showProgessBar();
 
-            repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandler() {
+            repo.fetchPapayaImages(new HebServerController.DataHandler() {
                 @Override
-                public void onSuccess(BaseModel model) {
+                public void onSuccess(List list) {
                     view.hideProgressBar();
-
-                    FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) model;
-                    List<Photo> photoList = searchResponse.getPhotoData().getPhotos();
-                    repo.setImageList(photoList);
-                    view.setData(photoList);
+                    view.setData(list);
                 }
 
                 @Override
@@ -49,6 +45,7 @@ public class ImageViewerPresenter extends
                     view.showCallFailedAlert();
                 }
             });
+
         } else {
             view.hideProgressBar();
 

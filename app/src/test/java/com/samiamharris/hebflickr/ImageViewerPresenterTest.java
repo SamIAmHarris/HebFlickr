@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
@@ -29,8 +30,8 @@ public class ImageViewerPresenterTest {
     ImageViewerPresenter presenter;
     ImageViewerContract.View mockView;
 
-    ArgumentCaptor<HebServerController.ResponseSuccessErrorHandler> callbackCaptor
-            = ArgumentCaptor.forClass(HebServerController.ResponseSuccessErrorHandler.class);
+    ArgumentCaptor<HebServerController.DataHandler> callbackCaptor
+            = ArgumentCaptor.forClass(HebServerController.DataHandler.class);
 
     @Before
     public void setup() {
@@ -60,13 +61,13 @@ public class ImageViewerPresenterTest {
 
         verify(mockRepo, times(1)).fetchPapayaImages(callbackCaptor.capture());
 
-        HebServerController.ResponseSuccessErrorHandler handler = callbackCaptor.getValue();
+        HebServerController.DataHandler handler = callbackCaptor.getValue();
         handler.onSuccess(getFakeFlickSearchResponse());
 
         verify(mockView, times(1)).setData(anyList());
     }
 
-    FlickrPhotosSearchResponse getFakeFlickSearchResponse() {
+    List<Photo> getFakeFlickSearchResponse() {
         FlickrPhotosSearchResponse flickrPhotosSearchResponse = new FlickrPhotosSearchResponse();
 
         PhotoData photoData = new PhotoData();
@@ -76,7 +77,7 @@ public class ImageViewerPresenterTest {
         photoData.setPhotos(photos);
         flickrPhotosSearchResponse.setPhotoData(photoData);
 
-        return flickrPhotosSearchResponse;
+        return photos;
     }
 
     @Test
@@ -86,7 +87,7 @@ public class ImageViewerPresenterTest {
 
         verify(mockRepo, times(1)).fetchPapayaImages(callbackCaptor.capture());
 
-        HebServerController.ResponseSuccessErrorHandler handler = callbackCaptor.getValue();
+        HebServerController.DataHandler handler = callbackCaptor.getValue();
         handler.onSuccess(getFakeFlickSearchResponse());
 
         verify(mockView, times(1)).hideProgressBar();
@@ -99,7 +100,7 @@ public class ImageViewerPresenterTest {
 
         verify(mockRepo, times(1)).fetchPapayaImages(callbackCaptor.capture());
 
-        HebServerController.ResponseSuccessErrorHandler handler = callbackCaptor.getValue();
+        HebServerController.DataHandler handler = callbackCaptor.getValue();
         handler.onFailure(new Throwable());
 
         verify(mockView, times(1)).hideProgressBar();
@@ -111,7 +112,7 @@ public class ImageViewerPresenterTest {
 
         verify(mockRepo, times(1)).fetchPapayaImages(callbackCaptor.capture());
 
-        HebServerController.ResponseSuccessErrorHandler handler = callbackCaptor.getValue();
+        HebServerController.DataHandler handler = callbackCaptor.getValue();
         handler.onFailure(new Throwable());
 
         verify(mockView, times(1)).showCallFailedAlert();
