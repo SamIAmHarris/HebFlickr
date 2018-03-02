@@ -7,7 +7,7 @@ package com.samiamharris.hebflickr.image_viewer;
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BasePresenter;
 import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
-import com.samiamharris.hebflickr.model.Model;
+import com.samiamharris.hebflickr.base.BaseModel;
 
 
 public class ImageViewerPresenter extends
@@ -29,7 +29,7 @@ public class ImageViewerPresenter extends
 
         repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandler() {
             @Override
-            public void onSuccess(Model model) {
+            public void onSuccess(BaseModel model) {
                 view.hideProgressBar();
                 FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) model;
                 view.setData(searchResponse.getPhotoData().getPhotos());

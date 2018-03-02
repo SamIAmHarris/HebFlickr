@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr.model;
+package com.samiamharris.hebflickr.base;
 
 /**
  * Created by SamIAm on 3/2/18.
@@ -8,5 +8,5 @@ package com.samiamharris.hebflickr.model;
  * For now it will just be used to pass down model objects from repo to presenter
  */
 
-public class Model {
+public class BaseModel {
 }

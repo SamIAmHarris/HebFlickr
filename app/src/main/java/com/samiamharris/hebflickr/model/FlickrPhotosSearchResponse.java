@@ -1,12 +1,13 @@
 package com.samiamharris.hebflickr.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.samiamharris.hebflickr.base.BaseModel;
 
 /**
  * Created by SamIAm on 3/1/18.
  */
 
-public class FlickrPhotosSearchResponse extends Model {
+public class FlickrPhotosSearchResponse extends BaseModel {
 
     private String stat;
     @SerializedName("photos")

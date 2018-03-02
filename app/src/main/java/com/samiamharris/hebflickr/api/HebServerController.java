@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.samiamharris.hebflickr.BuildConfig;
 import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
-import com.samiamharris.hebflickr.model.Model;
+import com.samiamharris.hebflickr.base.BaseModel;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -37,7 +37,7 @@ public abstract class HebServerController {
 
     public interface ResponseSuccessErrorHandler {
 
-        void onSuccess(Model model);
+        void onSuccess(BaseModel model);
         void onFailure(Throwable throwable);
 
     }
