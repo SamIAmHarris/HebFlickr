@@ -20,12 +20,12 @@ public interface ImageViewerContract {
     }
 
     interface Presenter extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {
-        void fetchImages(HebServerController.ResponseSuccessErrorHandling onResult);
+        void fetchImages(HebServerController.ResponseSuccessErrorHandler onResult);
     }
 
     interface Repository extends BaseContract.Repository {
         List<Photo> getImages();
-        void fetchPapayaImages(HebServerController.ResponseSuccessErrorHandling onResult);
+        void fetchPapayaImages(HebServerController.ResponseSuccessErrorHandler onResult);
     }
 
 }

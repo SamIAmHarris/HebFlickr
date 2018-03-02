@@ -7,7 +7,8 @@ package com.samiamharris.hebflickr.image_viewer;
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BasePresenter;
 import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
-import com.samiamharris.hebflickr.model.Model;
+
+import retrofit2.Response;
 
 
 public class ImageViewerPresenter extends
@@ -19,17 +20,18 @@ public class ImageViewerPresenter extends
     public void onBindView() {
         super.onBindView();
         ImageViewerContract.View view = getView();
+        ImageViewerContract.Repository repo = getRepo();
 
-        if(view == null) {
+        if(view == null || repo == null) {
             return;
         }
 
-        fetchImages(new HebServerController.ResponseSuccessErrorHandling() {
+        repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandler() {
             @Override
-            public void onSuccess(Model model) {
+            public void onSuccess(Response response) {
                 view.hideProgressBar();
-                FlickrPhotosSearchResponse flickrPhotosSearchResponse = (FlickrPhotosSearchResponse) model;
-                view.setData(flickrPhotosSearchResponse.photos.photo);
+                FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) response.body();
+                view.setData(searchResponse.getPhotoData().getPhotos());
             }
 
             @Override
@@ -41,15 +43,7 @@ public class ImageViewerPresenter extends
     }
 
     @Override
-    public void fetchImages(HebServerController.ResponseSuccessErrorHandling successErrorHandling) {
-        ImageViewerContract.Repository repo = getRepo();
-        ImageViewerContract.View view = getView();
+    public void fetchImages(HebServerController.ResponseSuccessErrorHandler successErrorHandling) {
 
-        if(repo == null || view == null) {
-            return;
-        }
-
-        view.showProgessBar();
-        repo.fetchPapayaImages(successErrorHandling);
     }
 }

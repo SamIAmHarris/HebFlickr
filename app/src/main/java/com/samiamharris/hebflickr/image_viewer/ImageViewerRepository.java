@@ -2,7 +2,6 @@ package com.samiamharris.hebflickr.image_viewer;
 
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BaseRepository;
-import com.samiamharris.hebflickr.model.Model;
 import com.samiamharris.hebflickr.model.Photo;
 
 import java.util.ArrayList;
@@ -20,19 +19,8 @@ public class ImageViewerRepository extends BaseRepository implements ImageViewer
         return imageList;
     }
 
-    public void fetchPapayaImages(HebServerController.ResponseSuccessErrorHandling onSuccess) {
-        HebServerController.fetchPhotos(new HebServerController.ResponseSuccessErrorHandling() {
-            @Override
-            public void onSuccess(Model model) {
-                onSuccess.onSuccess(model);
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-        });
-
+    public void fetchPapayaImages(HebServerController.ResponseSuccessErrorHandler handler) {
+        HebServerController.fetchPhotos(handler);
     }
 
 }

@@ -25,7 +25,7 @@ public class ImageViewerPresenterTest {
     ImageViewerContract.View mockView;
 
     @Captor
-    ArgumentCaptor<HebServerController.ResponseSuccessErrorHandling> callbackCaptor;
+    ArgumentCaptor<HebServerController.ResponseSuccessErrorHandler> callbackCaptor;
 
 
 

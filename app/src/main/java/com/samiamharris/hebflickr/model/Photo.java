@@ -62,8 +62,11 @@ public class Photo {
     }
 
     public String buildUrl() {
-        String urlFormat = "https://farm%s.staticflickr.com/%s/%s_%s_q.jpg";
+        return String.format(Constant.URL_FORMAT, getFarm(), getServer(), getId(), getSecret());
+    }
 
-        return String.format(urlFormat, getFarm(), getServer(), getId(), getSecret());
+    private static class Constant {
+        private static String URL_FORMAT = "https://farm%s.staticflickr.com/%s/%s_%s_q.jpg";
+
     }
 }
