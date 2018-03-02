@@ -14,6 +14,8 @@ public interface ImageViewerContract {
 
     interface View extends BaseContract.View {
         void setData(List<Photo> photos);
+        void showProgessBar();
+        void hideProgressBar();
     }
 
     interface Presenter extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {}

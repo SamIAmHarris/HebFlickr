@@ -24,16 +24,19 @@ public class ImageViewerPresenter extends
             return;
         }
 
+        view.showProgessBar();
+
         repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandling() {
             @Override
             public void onSuccess(Model model) {
+                view.hideProgressBar();
                 FlickrPhotosSearchResponse flickrPhotosSearchResponse = (FlickrPhotosSearchResponse) model;
                 view.setData(flickrPhotosSearchResponse.photos.photo);
             }
 
             @Override
             public void onFailure(Throwable throwable) {
-
+                view.showProgessBar();
             }
         });
     }

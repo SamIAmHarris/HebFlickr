@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.samiamharris.hebflickr.R;
 import com.samiamharris.hebflickr.base.BaseActivity;
@@ -23,6 +25,9 @@ import butterknife.ButterKnife;
 public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, ImageViewerContract.Repository,
         ImageViewerContract.Presenter>
         implements ImageViewerContract.View {
+
+    @BindView(R.id.photo_progress_bar)
+    ProgressBar progressBar;
 
     @BindView(R.id.photo_recyclerview)
     RecyclerView photoRecyclerView;
@@ -63,5 +68,15 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
     public void setData(List<Photo> photos) {
         photoAdapter.setData(photos);
         photoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showProgessBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
     }
 }

@@ -38,4 +38,10 @@ public class ImageViewerPresenterTest {
         verify(mockRepo, times(1)).fetchPapayaImages(any());
     }
 
+    @Test
+    public void showProgressBarOnBind(){
+        presenter.onBindView();
+        verify(mockView, times(1)).showProgessBar();
+    }
+
 }
