@@ -1,21 +1,22 @@
 package com.samiamharris.hebflickr.home;
 
+import com.samiamharris.hebflickr.base.BaseContract;
+
 /**
  * Created by SamIAm on 3/1/18.
  */
 
-abstract class HomeContract {
+public interface HomeContract {
 
-    interface View {
+    interface View extends BaseContract.View {
         void navigateToImageViewer();
     }
 
-    interface Presenter {
-        void setView(HomeContract.View view);
+    interface Presenter extends BaseContract.Presenter<View, Repository> {
         void onUserTapMainButton();
     }
 
-    interface Repository {
+    interface Repository extends BaseContract.Repository {
 
     }
 }
