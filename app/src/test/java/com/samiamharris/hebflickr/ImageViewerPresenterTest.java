@@ -102,7 +102,7 @@ public class ImageViewerPresenterTest {
         verify(mockView, times(1)).showCallFailedAlert();
     }
 
-    List<Photo> getFakeDataList() {
+    private List<Photo> getFakeDataList() {
         Photo photo = new Photo();
         ArrayList<Photo> photos = new ArrayList<>();
         photos.add(photo);

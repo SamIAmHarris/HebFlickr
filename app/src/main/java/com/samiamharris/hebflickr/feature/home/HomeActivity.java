@@ -11,8 +11,8 @@ import com.samiamharris.hebflickr.feature.image_viewer.ImageViewerActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends BaseActivity<HomeContract.View, HomeContract.Repository,
-        HomeContract.Presenter>
+public class HomeActivity
+        extends BaseActivity<HomeContract.View, HomeContract.Repository, HomeContract.Presenter>
         implements HomeContract.View {
 
 
@@ -39,7 +39,8 @@ public class HomeActivity extends BaseActivity<HomeContract.View, HomeContract.R
 
     @Override
     public void navigateToImageViewer() {
-        Intent imageViewerIntent = new Intent(HomeActivity.this, ImageViewerActivity.class);
+        Intent imageViewerIntent =
+                new Intent(HomeActivity.this, ImageViewerActivity.class);
         startActivity(imageViewerIntent);
     }
 }
