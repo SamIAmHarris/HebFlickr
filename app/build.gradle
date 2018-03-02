@@ -12,6 +12,15 @@ android {
     }
     buildTypes {
         release {
+            buildConfigField("String", "BASE_URL_API", "\"https://api.flickr.com/\"")
+            buildConfigField("String", "FLICK_API_KEY", "\"4b8ac29261e4c2f55486d76cc7c75bcd\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            buildConfigField("String", "BASE_URL_API", "\"https://api.flickr.com/\"")
+            buildConfigField("String", "FLICK_API_KEY", "\"4b8ac29261e4c2f55486d76cc7c75bcd\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -21,12 +21,13 @@ public class ImageViewerRepository extends BaseRepository implements ImageViewer
         return imageList;
     }
 
-    public void fetchPapayaImages() {
+    public void fetchPapayaImages(OnSuccess onSuccess) {
         HebServerController.fetchPhotos(new HebServerController.ResponseSuccessErrorHandling() {
             @Override
             public void onSuccess(Model model) {
                 FlickrPhotosSearchResponse photoResponse = (FlickrPhotosSearchResponse) model;
                 imageList = photoResponse.photos.photo;
+                onSuccess.onSuccess(imageList);
             }
 
             @Override

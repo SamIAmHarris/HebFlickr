@@ -5,6 +5,13 @@ package com.samiamharris.hebflickr.image_viewer;
  */
 
 import com.samiamharris.hebflickr.base.BasePresenter;
+import com.samiamharris.hebflickr.network.Photo;
+
+import java.util.List;
+
+interface OnSuccess {
+        void onSuccess(List<Photo> photoList);
+    }
 
 public class ImageViewerPresenter extends
         BasePresenter<ImageViewerContract.View, ImageViewerContract.Repository>
@@ -14,11 +21,17 @@ public class ImageViewerPresenter extends
     public void onBindView() {
         super.onBindView();
         ImageViewerContract.Repository repo = getRepo();
+        ImageViewerContract.View view = getView();
 
-        if(repo == null) {
+        if(repo == null || view == null) {
             return;
         }
 
-        repo.fetchPapayaImages();
+        repo.fetchPapayaImages(new OnSuccess() {
+            @Override
+            public void onSuccess(List<Photo> photoList) {
+                view.setData(photoList);
+            }
+        });
     }
 }

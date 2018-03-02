@@ -2,6 +2,8 @@ package com.samiamharris.hebflickr.network;
 
 import android.util.Log;
 
+import com.samiamharris.hebflickr.BuildConfig;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -22,7 +24,7 @@ public abstract class HebServerController {
     // Private Properties
 
     private final static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://api.flickr.com/")
+            .baseUrl(BuildConfig.BASE_URL_API)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
@@ -37,7 +39,7 @@ public abstract class HebServerController {
     }
 
     public static void fetchPhotos(ResponseSuccessErrorHandling handler) {
-        client.listPhotos("4b8ac29261e4c2f55486d76cc7c75bcd", "papaya")
+        client.listPhotos(BuildConfig.FLICK_API_KEY, "papaya")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FlickrPhotosSearchResponse>() {
