@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.samiamharris.hebflickr.BuildConfig;
 import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
+import com.samiamharris.hebflickr.model.Model;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,7 +37,7 @@ public abstract class HebServerController {
 
     public interface ResponseSuccessErrorHandler {
 
-        void onSuccess(Response response);
+        void onSuccess(Model model);
         void onFailure(Throwable throwable);
 
     }
@@ -45,7 +46,7 @@ public abstract class HebServerController {
         client.listPhotos(BuildConfig.FLICK_API_KEY, "papaya", 60).enqueue(new Callback<FlickrPhotosSearchResponse>() {
             @Override
             public void onResponse(@NonNull Call<FlickrPhotosSearchResponse> call, @NonNull Response<FlickrPhotosSearchResponse> response) {
-                handler.onSuccess(response);
+                handler.onSuccess(response.body());
             }
 
             @Override

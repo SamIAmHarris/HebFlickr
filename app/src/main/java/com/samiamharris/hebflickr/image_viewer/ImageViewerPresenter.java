@@ -7,8 +7,7 @@ package com.samiamharris.hebflickr.image_viewer;
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BasePresenter;
 import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
-
-import retrofit2.Response;
+import com.samiamharris.hebflickr.model.Model;
 
 
 public class ImageViewerPresenter extends
@@ -26,11 +25,13 @@ public class ImageViewerPresenter extends
             return;
         }
 
+        view.showProgessBar();
+
         repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandler() {
             @Override
-            public void onSuccess(Response response) {
+            public void onSuccess(Model model) {
                 view.hideProgressBar();
-                FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) response.body();
+                FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) model;
                 view.setData(searchResponse.getPhotoData().getPhotos());
             }
 
@@ -40,10 +41,5 @@ public class ImageViewerPresenter extends
                 view.showCallFailedAlert();
             }
         });
-    }
-
-    @Override
-    public void fetchImages(HebServerController.ResponseSuccessErrorHandler successErrorHandling) {
-
     }
 }
