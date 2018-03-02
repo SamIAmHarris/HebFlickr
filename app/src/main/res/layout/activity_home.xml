@@ -9,7 +9,7 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/button_home"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorAccent"
+        android:textColor="@android:color/white"
         android:padding="@dimen/home_button_padding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

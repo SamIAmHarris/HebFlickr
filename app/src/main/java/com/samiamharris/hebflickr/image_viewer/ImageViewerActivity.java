@@ -86,7 +86,7 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
         AlertDialog alertDialog = new AlertDialog.Builder(ImageViewerActivity.this).create();
         alertDialog.setTitle("Call to get photos failed");
         alertDialog.setMessage("Sorry it looks like we could not load your photos at this time.");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                (dialog, which) -> dialog.dismiss());
-        alertDialog.show();    }
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", (dialogInterface, i) -> dialogInterface.dismiss());
+        alertDialog.show();
+    }
 }
