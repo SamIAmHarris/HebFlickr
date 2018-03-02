@@ -1,5 +1,6 @@
 package com.samiamharris.hebflickr.image_viewer;
 
+import android.app.AlertDialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -79,4 +80,13 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
     public void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public void showCallFailedAlert() {
+        AlertDialog alertDialog = new AlertDialog.Builder(ImageViewerActivity.this).create();
+        alertDialog.setTitle("Call to get photos failed");
+        alertDialog.setMessage("Sorry it looks like we could not load your photos at this time.");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.show();    }
 }

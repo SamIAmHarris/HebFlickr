@@ -14,19 +14,17 @@ public class ImageViewerPresenter extends
         BasePresenter<ImageViewerContract.View, ImageViewerContract.Repository>
         implements ImageViewerContract.Presenter {
 
+
     @Override
     public void onBindView() {
         super.onBindView();
-        ImageViewerContract.Repository repo = getRepo();
         ImageViewerContract.View view = getView();
 
-        if(repo == null || view == null) {
+        if(view == null) {
             return;
         }
 
-        view.showProgessBar();
-
-        repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandling() {
+        fetchImages(new HebServerController.ResponseSuccessErrorHandling() {
             @Override
             public void onSuccess(Model model) {
                 view.hideProgressBar();
@@ -36,8 +34,22 @@ public class ImageViewerPresenter extends
 
             @Override
             public void onFailure(Throwable throwable) {
-                view.showProgessBar();
+                view.hideProgressBar();
+                view.showCallFailedAlert();
             }
         });
+    }
+
+    @Override
+    public void fetchImages(HebServerController.ResponseSuccessErrorHandling successErrorHandling) {
+        ImageViewerContract.Repository repo = getRepo();
+        ImageViewerContract.View view = getView();
+
+        if(repo == null || view == null) {
+            return;
+        }
+
+        view.showProgessBar();
+        repo.fetchPapayaImages(successErrorHandling);
     }
 }

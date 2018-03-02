@@ -1,10 +1,13 @@
 package com.samiamharris.hebflickr;
 
+import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.image_viewer.ImageViewerContract;
 import com.samiamharris.hebflickr.image_viewer.ImageViewerPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -20,6 +23,10 @@ public class ImageViewerPresenterTest {
     ImageViewerContract.Repository mockRepo;
     ImageViewerPresenter presenter;
     ImageViewerContract.View mockView;
+
+    @Captor
+    ArgumentCaptor<HebServerController.ResponseSuccessErrorHandling> callbackCaptor;
+
 
 
     @Before
@@ -42,6 +49,25 @@ public class ImageViewerPresenterTest {
     public void showProgressBarOnBind(){
         presenter.onBindView();
         verify(mockView, times(1)).showProgessBar();
+    }
+
+    @Test
+    public void setDataOnSuccessCall() {
+    }
+
+    @Test
+    public void hideProgressBarOnSuccess() {
+
+    }
+
+    @Test
+    public void hideProgressBarOnFailure() {
+
+    }
+
+    @Test
+    public void showAlertOnFailure() {
+
     }
 
 }

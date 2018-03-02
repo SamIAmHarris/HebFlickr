@@ -16,9 +16,12 @@ public interface ImageViewerContract {
         void setData(List<Photo> photos);
         void showProgessBar();
         void hideProgressBar();
+        void showCallFailedAlert();
     }
 
-    interface Presenter extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {}
+    interface Presenter extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {
+        void fetchImages(HebServerController.ResponseSuccessErrorHandling onResult);
+    }
 
     interface Repository extends BaseContract.Repository {
         List<Photo> getImages();
