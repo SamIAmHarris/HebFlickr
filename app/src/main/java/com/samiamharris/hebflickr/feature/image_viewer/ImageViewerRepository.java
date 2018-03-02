@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr.image_viewer;
+package com.samiamharris.hebflickr.feature.image_viewer;
 
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BaseModel;

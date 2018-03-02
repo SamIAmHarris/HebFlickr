@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr.image_viewer;
+package com.samiamharris.hebflickr.feature.image_viewer;
 
 /**
  * Created by SamIAm on 3/1/18.
@@ -6,9 +6,6 @@ package com.samiamharris.hebflickr.image_viewer;
 
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BasePresenter;
-import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
-import com.samiamharris.hebflickr.base.BaseModel;
-import com.samiamharris.hebflickr.model.Photo;
 
 import java.util.List;
 

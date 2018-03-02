@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr.image_viewer;
+package com.samiamharris.hebflickr.feature.image_viewer;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

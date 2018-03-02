@@ -1,8 +1,8 @@
 package com.samiamharris.hebflickr;
 
 import com.samiamharris.hebflickr.api.HebServerController;
-import com.samiamharris.hebflickr.image_viewer.ImageViewerContract;
-import com.samiamharris.hebflickr.image_viewer.ImageViewerPresenter;
+import com.samiamharris.hebflickr.feature.image_viewer.ImageViewerContract;
+import com.samiamharris.hebflickr.feature.image_viewer.ImageViewerPresenter;
 import com.samiamharris.hebflickr.model.Photo;
 
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr.home;
+package com.samiamharris.hebflickr.feature.home;
 
 import com.samiamharris.hebflickr.base.BaseRepository;
 

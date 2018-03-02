@@ -1,7 +1,7 @@
 package com.samiamharris.hebflickr;
 
-import com.samiamharris.hebflickr.home.HomeContract;
-import com.samiamharris.hebflickr.home.HomePresenter;
+import com.samiamharris.hebflickr.feature.home.HomeContract;
+import com.samiamharris.hebflickr.feature.home.HomePresenter;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr.image_viewer;
+package com.samiamharris.hebflickr.feature.image_viewer;
 
 import android.app.AlertDialog;
 import android.content.res.Configuration;

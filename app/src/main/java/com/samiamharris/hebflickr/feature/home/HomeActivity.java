@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr.home;
+package com.samiamharris.hebflickr.feature.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import com.samiamharris.hebflickr.R;
 import com.samiamharris.hebflickr.base.BaseActivity;
-import com.samiamharris.hebflickr.image_viewer.ImageViewerActivity;
+import com.samiamharris.hebflickr.feature.image_viewer.ImageViewerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
