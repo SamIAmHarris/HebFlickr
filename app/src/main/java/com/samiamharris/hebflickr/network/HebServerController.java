@@ -45,24 +45,20 @@ public abstract class HebServerController {
                 .subscribe(new Observer<FlickrPhotosSearchResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("boogie", "onSubscribe");
                     }
 
                     @Override
                     public void onNext(FlickrPhotosSearchResponse flickrPhotosSearchResponse) {
-                        Log.i("boogie", "onNext");
                         handler.onSuccess(flickrPhotosSearchResponse);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("boogie", "onError");
                         handler.onFailure(e);
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.i("boogie", "onComplete");
                     }
                 });
     }

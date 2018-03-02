@@ -3,10 +3,12 @@ package com.samiamharris.hebflickr.image_viewer;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.samiamharris.hebflickr.R;
 import com.samiamharris.hebflickr.network.Photo;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,35 +18,35 @@ import butterknife.ButterKnife;
  */
 
 public class PhotoHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener{
+        implements View.OnClickListener{
 
-        private Photo photo;
-        Context context;
+    private Photo photo;
+    private Context context;
 
-        @BindView(R.id.photo_text)
-        TextView titleTextView;
+    @BindView(R.id.photo_image)
+    ImageView thumbnailImageView;
 
-        public PhotoHolder(View itemView) {
-            super(itemView);
-            context = itemView.getContext();
-            itemView.setOnClickListener(this);
-            ButterKnife.bind(this, itemView);
-        }
+    public PhotoHolder(View itemView) {
+        super(itemView);
+        context = itemView.getContext();
+        itemView.setOnClickListener(this);
+        ButterKnife.bind(this, itemView);
+    }
 
-        public void bindPhoto(Photo photo) {
-            this.photo = photo;
-            titleTextView.setText(photo.id);
+    public void bindPhoto(Photo photo) {
+        this.photo = photo;
 
-//            Glide
-//                    .with(itemView.getContext())
-//                    .load(movie.getPosters().getThumbnail())
-//                    .centerCrop()
-//                    .placeholder(R.mipmap.ic_launcher)
-//                    .crossFade()
-//                    .into(thumbnailImageView);
-        }
+//        Glide
+//            .with(itemView.getContext())
+//            .load(photo.buildUrl())
+//            .into(thumbnailImageView);
 
-        @Override
-        public void onClick(View v) {
-        }
+        Picasso.with(context).load(photo.buildUrl()).into(thumbnailImageView);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(context, photo.getTitle(), Toast.LENGTH_SHORT).show();
+    }
 }

@@ -6,35 +6,64 @@ package com.samiamharris.hebflickr.network;
 
 public class Photo {
 
-    public String id;
-    public String owner;
-    public String secret;
-    public String server;
-    public String farm;
-    public String title;
+    private String id;
+    private String owner;
+    private String secret;
+    private String server;
+    private String farm;
+    private String title;
 
-    public int ispublic;
-    public int isfriend;
-    public int isfamily;
+    public String getId() {
+        return id;
+    }
 
-    // Thumbnail
-    public String url_t;
-    public int height_t;
-    public int width_t;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    // Large
-    public String url_l;
-    public int height_l;
-    public int width_l;
+    public String getOwner() {
+        return owner;
+    }
 
-    // Caption
-    public String url_c;
-    public int height_c;
-    public int width_c;
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
-    // Original
-    public String url_o;
-    public int height_o;
-    public int width_o;
+    public String getSecret() {
+        return secret;
+    }
 
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
+    public String getServer() {
+        return server;
+    }
+
+    public void setServer(String server) {
+        this.server = server;
+    }
+
+    public String getFarm() {
+        return farm;
+    }
+
+    public void setFarm(String farm) {
+        this.farm = farm;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String buildUrl() {
+        String urlFormat = "https://farm%s.staticflickr.com/%s/%s_%s.jpg";
+
+        return String.format(urlFormat, getFarm(), getServer(), getId(), getSecret());
+    }
 }

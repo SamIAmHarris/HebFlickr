@@ -22,7 +22,7 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
         ImageViewerContract.Presenter>
         implements ImageViewerContract.View {
 
-    @BindView(R.id.main_recyclerview)
+    @BindView(R.id.photo_recyclerview)
     RecyclerView photoRecyclerView;
 
     PhotoAdapter photoAdapter;
