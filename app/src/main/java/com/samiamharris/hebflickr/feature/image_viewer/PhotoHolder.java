@@ -31,14 +31,14 @@ public class PhotoHolder extends RecyclerView.ViewHolder
     @BindView(R.id.photo_image)
     ImageView thumbnailImageView;
 
-    public PhotoHolder(View itemView) {
+    PhotoHolder(View itemView) {
         super(itemView);
         context = itemView.getContext();
         itemView.setOnClickListener(this);
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindPhoto(Photo photo) {
+    void bindPhoto(Photo photo) {
         this.photo = photo;
         Picasso.with(context).load(photo.buildUrl()).into(thumbnailImageView);
     }
@@ -51,6 +51,12 @@ public class PhotoHolder extends RecyclerView.ViewHolder
     private void setUpAndShowFullSizeImage() {
 
         final Dialog fullSizeDialog = new Dialog(context, android.R.style.ThemeOverlay_Material);
+
+        setupDialogSizeAndStyle(fullSizeDialog);
+        setupDialogViews(fullSizeDialog);
+    }
+
+    private void setupDialogSizeAndStyle(Dialog fullSizeDialog) {
         Window window = fullSizeDialog.getWindow();
         if (window != null) {
             fullSizeDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.color.transparent_black));
@@ -59,7 +65,9 @@ public class PhotoHolder extends RecyclerView.ViewHolder
         fullSizeDialog.setCancelable(false);
         fullSizeDialog.setContentView(R.layout.full_size_photo);
         fullSizeDialog.setCancelable(true);
+    }
 
+    private void setupDialogViews(Dialog fullSizeDialog) {
         RelativeLayout dialogParent = fullSizeDialog.findViewById(R.id.dialog_parent);
         ImageView fullSizeImage = fullSizeDialog.findViewById(R.id.full_size_image);
         ProgressBar progressBar = fullSizeDialog.findViewById(R.id.large_photo_progress_bar);

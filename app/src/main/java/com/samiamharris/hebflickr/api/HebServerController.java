@@ -48,10 +48,16 @@ public abstract class HebServerController {
     }
 
     public static void fetchPhotos(ResponseSuccessErrorHandler handler) {
-        client.listPhotos(BuildConfig.FLICK_API_KEY, "papaya", 60).enqueue(new Callback<FlickrPhotosSearchResponse>() {
+        client.listPhotos(BuildConfig.FLICK_API_KEY, Constant.BASIC_TERM, Constant.PAGE_COUNT)
+                .enqueue(new Callback<FlickrPhotosSearchResponse>() {
             @Override
-            public void onResponse(@NonNull Call<FlickrPhotosSearchResponse> call, @NonNull Response<FlickrPhotosSearchResponse> response) {
-                handler.onSuccess(response.body());
+            public void onResponse(@NonNull Call<FlickrPhotosSearchResponse> call,
+                                   @NonNull Response<FlickrPhotosSearchResponse> response) {
+                if(response.isSuccessful()) {
+                    handler.onSuccess(response.body());
+                } else {
+                    handler.onFailure(new Throwable());
+                }
             }
 
             @Override
@@ -65,7 +71,7 @@ public abstract class HebServerController {
     * Just in here to show an rx option
     */
     public static void rxFetchPhotos(ResponseSuccessErrorHandler handler) {
-        client.rxListPhotos(BuildConfig.FLICK_API_KEY, "papaya", 60)
+        client.rxListPhotos(BuildConfig.FLICK_API_KEY, Constant.BASIC_TERM, Constant.PAGE_COUNT)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Observer<FlickrPhotosSearchResponse>() {
@@ -92,20 +98,27 @@ public abstract class HebServerController {
 
         @GET("/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1")
         Call<FlickrPhotosSearchResponse> listPhotos(
-                @Query("api_key") String apiKey,
-                @Query("tags") String tags,
-                @Query("per_page") int perPage);
-
-
+                @Query(Constant.API_KEY) String apiKey,
+                @Query(Constant.TAGS) String tags,
+                @Query(Constant.PER_PAGE) int perPage);
 
         /*
         * Just in here to show an rx option
         */
         @GET("/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1")
         io.reactivex.Observable<FlickrPhotosSearchResponse> rxListPhotos(
-                @Query("api_key") String apiKey,
-                @Query("tags") String tags,
-                @Query("per_page") int perPage);
+                @Query(Constant.API_KEY) String apiKey,
+                @Query(Constant.TAGS) String tags,
+                @Query(Constant.PER_PAGE) int perPage);
+    }
+
+    private static class Constant {
+        private static final String API_KEY = "api_key";
+        private static final String TAGS = "tags";
+        private static final String PER_PAGE = "per_page";
+
+        private static final String BASIC_TERM = "papaya";
+        private static final int PAGE_COUNT = 60;
     }
 
 }

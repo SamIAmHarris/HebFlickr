@@ -14,12 +14,13 @@ public interface ImageViewerContract {
 
     interface View extends BaseContract.View {
         void setData(List<Photo> photos);
-        void showProgessBar();
+        void showProgressBar();
         void hideProgressBar();
         void showCallFailedAlert();
     }
 
-    interface Presenter extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {
+    interface Presenter
+            extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {
     }
 
     interface Repository extends BaseContract.Repository {

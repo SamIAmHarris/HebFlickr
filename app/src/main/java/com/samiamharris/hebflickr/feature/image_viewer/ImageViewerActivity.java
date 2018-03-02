@@ -46,9 +46,11 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
         GridLayoutManager gridLayoutManager;
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.HORIZONTAL, false);
+            gridLayoutManager = new GridLayoutManager(
+                    this, Constant.HORIZONTAL_ROW, LinearLayoutManager.HORIZONTAL, false);
         } else {
-            gridLayoutManager = new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false);
+            gridLayoutManager = new GridLayoutManager(
+                    this, Constant.VERTICAL_COLUMN, LinearLayoutManager.VERTICAL, false);
         }
 
         photoRecyclerView.setLayoutManager(gridLayoutManager);
@@ -72,7 +74,7 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
     }
 
     @Override
-    public void showProgessBar() {
+    public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
@@ -84,9 +86,15 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
     @Override
     public void showCallFailedAlert() {
         AlertDialog alertDialog = new AlertDialog.Builder(ImageViewerActivity.this).create();
-        alertDialog.setTitle("Call to get photos failed");
-        alertDialog.setMessage("Sorry it looks like we could not load your photos at this time.");
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", (dialogInterface, i) -> dialogInterface.dismiss());
+        alertDialog.setTitle(getString(R.string.failed_title));
+        alertDialog.setMessage(getString(R.string.could_not_load));
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,
+                getString(R.string.ok), (dialogInterface, i) -> dialogInterface.dismiss());
         alertDialog.show();
+    }
+
+    private static class Constant {
+        private static final int VERTICAL_COLUMN = 3;
+        private static final int HORIZONTAL_ROW = 2;
     }
 }

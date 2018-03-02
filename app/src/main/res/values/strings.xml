@@ -2,4 +2,7 @@
     <string name="app_name">HebFlickr</string>
     <string name="home_button_text">Launch Image Viewer</string>
     <string name="failed_to_load_text">Sorry image failed to load</string>
+    <string name="failed_title">Could Not Load Photos</string>
+    <string name="could_not_load">Sorry it looks like we could not load your photos at this time.</string>
+    <string name="ok">OK</string>
 </resources>

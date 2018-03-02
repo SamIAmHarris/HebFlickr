@@ -30,8 +30,8 @@ public class ImageViewerRepository extends BaseRepository implements ImageViewer
         HebServerController.fetchPhotos(new HebServerController.ResponseSuccessErrorHandler() {
             @Override
             public void onSuccess(BaseModel model) {
-                FlickrPhotosSearchResponse flickrPhotosSearchResponse = (FlickrPhotosSearchResponse) model;
-                List<Photo> list = flickrPhotosSearchResponse.getPhotoData().getPhotos();
+                FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) model;
+                List<Photo> list = searchResponse.getPhotoData().getPhotos();
                 setImageList(list);
                 handler.onSuccess(list);
             }

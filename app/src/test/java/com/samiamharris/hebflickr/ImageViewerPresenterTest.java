@@ -50,7 +50,7 @@ public class ImageViewerPresenterTest {
     @Test
     public void showProgressBarOnBind(){
         presenter.onBindView();
-        verify(mockView, times(1)).showProgessBar();
+        verify(mockView, times(1)).showProgressBar();
     }
 
     @Test

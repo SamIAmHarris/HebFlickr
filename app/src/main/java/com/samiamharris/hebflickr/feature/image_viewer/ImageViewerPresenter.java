@@ -27,7 +27,7 @@ public class ImageViewerPresenter extends
 
         if(repo.getImageList().isEmpty()) {
 
-            view.showProgessBar();
+            view.showProgressBar();
 
             repo.fetchPapayaImages(new HebServerController.DataHandler() {
                 @Override
