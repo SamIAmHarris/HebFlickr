@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HebFlickr</string>
     <string name="home_button_text">Launch Image Viewer</string>
+    <string name="failed_to_load_text">Sorry image failed to load</string>
 </resources>

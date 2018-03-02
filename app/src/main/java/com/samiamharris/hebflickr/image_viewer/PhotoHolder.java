@@ -51,7 +51,6 @@ public class PhotoHolder extends RecyclerView.ViewHolder
     public void setUpAndShowFullSizeImage() {
 
         final Dialog fullSizeDialog = new Dialog(context, android.R.style.ThemeOverlay_Material);
-
         Window window = fullSizeDialog.getWindow();
         if (window != null) {
             fullSizeDialog.getWindow().setBackgroundDrawable(context.getDrawable(R.color.transparent_black));
@@ -59,10 +58,12 @@ public class PhotoHolder extends RecyclerView.ViewHolder
         fullSizeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         fullSizeDialog.setCancelable(false);
         fullSizeDialog.setContentView(R.layout.full_size_photo);
+        fullSizeDialog.setCancelable(true);
+
         RelativeLayout dialogParent = fullSizeDialog.findViewById(R.id.dialog_parent);
         ImageView fullSizeImage = fullSizeDialog.findViewById(R.id.full_size_image);
         ProgressBar progressBar = fullSizeDialog.findViewById(R.id.large_photo_progress_bar);
-        fullSizeDialog.setCancelable(true);
+        
         dialogParent.setOnClickListener(view -> fullSizeDialog.dismiss());
         fullSizeImage.setOnClickListener(view -> fullSizeDialog.dismiss());
         fullSizeDialog.show();
@@ -78,7 +79,7 @@ public class PhotoHolder extends RecyclerView.ViewHolder
             @Override
             public void onError() {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Sorry image failed to load", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.failed_to_load_text, Toast.LENGTH_LONG).show();
                 fullSizeDialog.dismiss();
             }
         });
