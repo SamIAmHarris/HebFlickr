@@ -13,9 +13,14 @@ import java.util.List;
 
 public class ImageViewerRepository extends BaseRepository implements ImageViewerContract.Repository {
 
-    public List<Photo> imageList = new ArrayList<>();
+    private List<Photo> imageList = new ArrayList<>();
 
-    public List<Photo> getImages() {
+    public void setImageList(List<Photo> imageList) {
+        this.imageList = imageList;
+    }
+
+    @Override
+    public List<Photo> getImageList() {
         return imageList;
     }
 

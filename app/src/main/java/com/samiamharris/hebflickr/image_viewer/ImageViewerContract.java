@@ -24,6 +24,8 @@ public interface ImageViewerContract {
 
     interface Repository extends BaseContract.Repository {
         void fetchPapayaImages(HebServerController.ResponseSuccessErrorHandler onResult);
+        void setImageList(List<Photo> photos);
+        List<Photo> getImageList();
     }
 
 }

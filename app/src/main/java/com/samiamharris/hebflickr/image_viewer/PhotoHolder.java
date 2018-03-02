@@ -48,7 +48,7 @@ public class PhotoHolder extends RecyclerView.ViewHolder
         setUpAndShowFullSizeImage();
     }
 
-    public void setUpAndShowFullSizeImage() {
+    private void setUpAndShowFullSizeImage() {
 
         final Dialog fullSizeDialog = new Dialog(context, android.R.style.ThemeOverlay_Material);
         Window window = fullSizeDialog.getWindow();
@@ -63,7 +63,7 @@ public class PhotoHolder extends RecyclerView.ViewHolder
         RelativeLayout dialogParent = fullSizeDialog.findViewById(R.id.dialog_parent);
         ImageView fullSizeImage = fullSizeDialog.findViewById(R.id.full_size_image);
         ProgressBar progressBar = fullSizeDialog.findViewById(R.id.large_photo_progress_bar);
-        
+
         dialogParent.setOnClickListener(view -> fullSizeDialog.dismiss());
         fullSizeImage.setOnClickListener(view -> fullSizeDialog.dismiss());
         fullSizeDialog.show();

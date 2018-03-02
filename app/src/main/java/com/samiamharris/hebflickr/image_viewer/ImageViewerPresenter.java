@@ -8,6 +8,9 @@ import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BasePresenter;
 import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
 import com.samiamharris.hebflickr.base.BaseModel;
+import com.samiamharris.hebflickr.model.Photo;
+
+import java.util.List;
 
 
 public class ImageViewerPresenter extends
@@ -25,21 +28,30 @@ public class ImageViewerPresenter extends
             return;
         }
 
-        view.showProgessBar();
+        if(repo.getImageList().isEmpty()) {
 
-        repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandler() {
-            @Override
-            public void onSuccess(BaseModel model) {
-                view.hideProgressBar();
-                FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) model;
-                view.setData(searchResponse.getPhotoData().getPhotos());
-            }
+            view.showProgessBar();
 
-            @Override
-            public void onFailure(Throwable throwable) {
-                view.hideProgressBar();
-                view.showCallFailedAlert();
-            }
-        });
+            repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandler() {
+                @Override
+                public void onSuccess(BaseModel model) {
+                    view.hideProgressBar();
+                    FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) model;
+                    List<Photo> photoList = searchResponse.getPhotoData().getPhotos();
+                    repo.setImageList(photoList);
+                    view.setData(searchResponse.getPhotoData().getPhotos());
+                }
+
+                @Override
+                public void onFailure(Throwable throwable) {
+                    view.hideProgressBar();
+                    view.showCallFailedAlert();
+                }
+            });
+        } else {
+            view.hideProgressBar();
+            
+            view.setData(repo.getImageList());
+        }
     }
 }
