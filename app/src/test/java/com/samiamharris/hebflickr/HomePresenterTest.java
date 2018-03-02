@@ -16,18 +16,18 @@ import static org.mockito.Mockito.verify;
 
 public class HomePresenterTest {
 
-    HomeContract.Repository mockHomeRepo;
-    HomePresenter presenter;
-    HomeContract.View mockView;
+    private HomeContract.Repository mockRepo;
+    private HomePresenter presenter;
+    private HomeContract.View mockView;
 
     @Before
     public void setup() {
-        mockHomeRepo = mock(HomeContract.Repository.class);
+        mockRepo = mock(HomeContract.Repository.class);
         mockView = mock(HomeContract.View.class);
 
         presenter = new HomePresenter();
         presenter.attachView(mockView);
-        presenter.setRepo(mockHomeRepo);
+        presenter.setRepo(mockRepo);
     }
 
     @Test

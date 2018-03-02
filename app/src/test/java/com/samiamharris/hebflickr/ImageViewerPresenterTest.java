@@ -3,9 +3,7 @@ package com.samiamharris.hebflickr;
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.image_viewer.ImageViewerContract;
 import com.samiamharris.hebflickr.image_viewer.ImageViewerPresenter;
-import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
 import com.samiamharris.hebflickr.model.Photo;
-import com.samiamharris.hebflickr.model.PhotoData;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,11 +24,11 @@ import static org.mockito.Mockito.verify;
 
 public class ImageViewerPresenterTest {
 
-    ImageViewerContract.Repository mockRepo;
-    ImageViewerPresenter presenter;
-    ImageViewerContract.View mockView;
+    private ImageViewerContract.Repository mockRepo;
+    private ImageViewerPresenter presenter;
+    private ImageViewerContract.View mockView;
 
-    ArgumentCaptor<HebServerController.DataHandler> callbackCaptor
+    private ArgumentCaptor<HebServerController.DataHandler> callbackCaptor
             = ArgumentCaptor.forClass(HebServerController.DataHandler.class);
 
     @Before
@@ -62,33 +60,19 @@ public class ImageViewerPresenterTest {
         verify(mockRepo, times(1)).fetchPapayaImages(callbackCaptor.capture());
 
         HebServerController.DataHandler handler = callbackCaptor.getValue();
-        handler.onSuccess(getFakeFlickSearchResponse());
+        handler.onSuccess(getFakeDataList());
 
         verify(mockView, times(1)).setData(anyList());
     }
 
-    List<Photo> getFakeFlickSearchResponse() {
-        FlickrPhotosSearchResponse flickrPhotosSearchResponse = new FlickrPhotosSearchResponse();
-
-        PhotoData photoData = new PhotoData();
-        Photo photo = new Photo();
-        ArrayList<Photo> photos = new ArrayList<>();
-        photos.add(photo);
-        photoData.setPhotos(photos);
-        flickrPhotosSearchResponse.setPhotoData(photoData);
-
-        return photos;
-    }
-
     @Test
     public void hideProgressBarOnSuccess() {
-
         presenter.onBindView();
 
         verify(mockRepo, times(1)).fetchPapayaImages(callbackCaptor.capture());
 
         HebServerController.DataHandler handler = callbackCaptor.getValue();
-        handler.onSuccess(getFakeFlickSearchResponse());
+        handler.onSuccess(getFakeDataList());
 
         verify(mockView, times(1)).hideProgressBar();
 
@@ -118,4 +102,11 @@ public class ImageViewerPresenterTest {
         verify(mockView, times(1)).showCallFailedAlert();
     }
 
+    List<Photo> getFakeDataList() {
+        Photo photo = new Photo();
+        ArrayList<Photo> photos = new ArrayList<>();
+        photos.add(photo);
+
+        return photos;
+    }
 }
