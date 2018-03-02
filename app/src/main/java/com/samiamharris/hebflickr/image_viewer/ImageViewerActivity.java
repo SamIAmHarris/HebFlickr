@@ -1,8 +1,10 @@
 package com.samiamharris.hebflickr.image_viewer;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.samiamharris.hebflickr.R;
@@ -34,7 +36,16 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
         ButterKnife.bind(this);
 
         photoAdapter = new PhotoAdapter();
-        photoRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+        GridLayoutManager gridLayoutManager;
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            gridLayoutManager = new GridLayoutManager(this, 2, LinearLayoutManager.HORIZONTAL, false);
+        } else {
+            gridLayoutManager = new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false);
+        }
+
+        photoRecyclerView.setLayoutManager(gridLayoutManager);
         photoRecyclerView.setAdapter(photoAdapter);
     }
 
