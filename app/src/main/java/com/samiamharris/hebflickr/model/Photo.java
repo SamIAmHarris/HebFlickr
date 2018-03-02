@@ -62,11 +62,16 @@ public class Photo {
     }
 
     public String buildUrl() {
-        return String.format(Constant.URL_FORMAT, getFarm(), getServer(), getId(), getSecret());
+        return String.format(Constant.NORMAL_SIZE_FORMAT, getFarm(), getServer(), getId(), getSecret());
+    }
+
+    public String buildLargeUrl() {
+        return String.format(Constant.LARGE_SIZE_FORMAT, getFarm(), getServer(), getId(), getSecret());
     }
 
     private static class Constant {
-        private static String URL_FORMAT = "https://farm%s.staticflickr.com/%s/%s_%s_q.jpg";
+        private static String NORMAL_SIZE_FORMAT = "https://farm%s.staticflickr.com/%s/%s_%s_q.jpg";
+        private static String LARGE_SIZE_FORMAT = "https://farm%s.staticflickr.com/%s/%s_%s_b.jpg";
 
     }
 }
