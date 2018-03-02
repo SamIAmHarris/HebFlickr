@@ -36,10 +36,11 @@ public class ImageViewerPresenter extends
                 @Override
                 public void onSuccess(BaseModel model) {
                     view.hideProgressBar();
+
                     FlickrPhotosSearchResponse searchResponse = (FlickrPhotosSearchResponse) model;
                     List<Photo> photoList = searchResponse.getPhotoData().getPhotos();
                     repo.setImageList(photoList);
-                    view.setData(searchResponse.getPhotoData().getPhotos());
+                    view.setData(photoList);
                 }
 
                 @Override
@@ -50,7 +51,7 @@ public class ImageViewerPresenter extends
             });
         } else {
             view.hideProgressBar();
-            
+
             view.setData(repo.getImageList());
         }
     }

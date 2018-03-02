@@ -8,8 +8,10 @@
         android:id="@+id/photo_image"
         android:layout_centerInParent="true"
         android:scaleType="fitXY"
+        android:minHeight="@dimen/photo_size"
+        android:minWidth="@dimen/photo_size"
         android:layout_margin="1dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

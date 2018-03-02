@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="home_button_padding">8dp</dimen>
+    <dimen name="photo_size">150dp</dimen>
 
 </resources>
