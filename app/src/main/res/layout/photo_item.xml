@@ -7,7 +7,9 @@
     <ImageView
         android:id="@+id/photo_image"
         android:layout_centerInParent="true"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+        android:scaleType="fitXY"
+        android:layout_margin="1dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
 
 </RelativeLayout>

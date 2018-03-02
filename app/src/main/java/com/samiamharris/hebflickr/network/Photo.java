@@ -62,7 +62,7 @@ public class Photo {
     }
 
     public String buildUrl() {
-        String urlFormat = "https://farm%s.staticflickr.com/%s/%s_%s.jpg";
+        String urlFormat = "https://farm%s.staticflickr.com/%s/%s_%s_q.jpg";
 
         return String.format(urlFormat, getFarm(), getServer(), getId(), getSecret());
     }
