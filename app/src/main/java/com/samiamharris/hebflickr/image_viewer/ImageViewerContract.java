@@ -1,6 +1,9 @@
 package com.samiamharris.hebflickr.image_viewer;
 
 import com.samiamharris.hebflickr.base.BaseContract;
+import com.samiamharris.hebflickr.network.Photo;
+
+import java.util.List;
 
 /**
  * Created by SamIAm on 3/1/18.
@@ -12,6 +15,9 @@ public interface ImageViewerContract {
 
     interface Presenter extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {}
 
-    interface Repository extends BaseContract.Repository {}
+    interface Repository extends BaseContract.Repository {
+        List<Photo> getImages();
+        void fetchPapayaImages();
+    }
 
 }

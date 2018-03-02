@@ -22,20 +22,32 @@ public abstract class BaseActivity<
         super.onCreate(savedInstanceState);
 
         BaseViewModel<V, R, P> viewModel = ViewModelProviders.of(this).get(BaseViewModel.class);
-        buildFeature(savedInstanceState, viewModel, new BaseContract.FeatureBuilder<V, R, P>() {
-            @Override
-            public void setPresenter(P newPresenter) {
-                presenter = newPresenter;
-            }
-            @Override
-            public P newPresenter() {
-                return initPresenter();
-            }
-            @Override
-            public R newRepository() {
-                return initRepository();
-            }
-        });
+
+        final boolean shouldCreatePresenter = viewModel.getPresenter() == null;
+
+        if (shouldCreatePresenter) {
+            viewModel.setPresenter(initPresenter());
+        }
+        presenter = viewModel.getPresenter();
+        presenter.attachView((V) this);
+
+        if (presenter.getRepo() == null) {
+            // Only set repo if one's needed. Otherwise, use persisted repo.
+            presenter.setRepo(initRepository());
+        }
+        if (shouldCreatePresenter) {
+            presenter.onPresenterCreated();
+        }
+        if (savedInstanceState != null) {
+            presenter.onPresenterRestore();
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.onStartWithAttachedView();
     }
 
     protected abstract P initPresenter();

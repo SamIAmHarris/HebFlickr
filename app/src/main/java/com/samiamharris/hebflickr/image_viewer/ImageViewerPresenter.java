@@ -5,11 +5,20 @@ package com.samiamharris.hebflickr.image_viewer;
  */
 
 import com.samiamharris.hebflickr.base.BasePresenter;
-import com.samiamharris.hebflickr.home.HomeContract;
 
 public class ImageViewerPresenter extends
         BasePresenter<ImageViewerContract.View, ImageViewerContract.Repository>
         implements ImageViewerContract.Presenter {
 
-    private HomeContract.View view;
+    @Override
+    public void onBindView() {
+        super.onBindView();
+        ImageViewerContract.Repository repo = getRepo();
+
+        if(repo == null) {
+            return;
+        }
+
+        repo.fetchPapayaImages();
+    }
 }

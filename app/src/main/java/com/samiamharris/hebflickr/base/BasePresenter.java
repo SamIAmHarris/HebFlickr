@@ -55,6 +55,7 @@ public abstract class BasePresenter<V extends BaseContract.View, R extends BaseC
         //Subclasses can override.
     }
 
+    @Override
     public void onStartWithAttachedView() {
         // Subclasses should override.
         if (shouldBindView) {
