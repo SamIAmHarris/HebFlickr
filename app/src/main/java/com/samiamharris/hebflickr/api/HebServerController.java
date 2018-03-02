@@ -27,8 +27,6 @@ import retrofit2.http.Query;
 
 public abstract class HebServerController {
 
-    // Private Properties
-
     private final static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL_API)
             .addConverterFactory(GsonConverterFactory.create())

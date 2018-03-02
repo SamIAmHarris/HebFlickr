@@ -9,18 +9,8 @@ import com.samiamharris.hebflickr.base.BaseModel;
 
 public class FlickrPhotosSearchResponse extends BaseModel {
 
-    private String stat;
     @SerializedName("photos")
     private PhotoData photoData;
-
-
-    public String getStat() {
-        return stat;
-    }
-
-    public void setStat(String stat) {
-        this.stat = stat;
-    }
 
     public PhotoData getPhotoData() {
         return photoData;
