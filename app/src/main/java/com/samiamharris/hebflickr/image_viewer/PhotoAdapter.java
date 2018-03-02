@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.samiamharris.hebflickr.R;
-import com.samiamharris.hebflickr.network.Photo;
+import com.samiamharris.hebflickr.model.Photo;
 
 import java.util.List;
 

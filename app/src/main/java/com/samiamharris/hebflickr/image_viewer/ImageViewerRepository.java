@@ -1,10 +1,9 @@
 package com.samiamharris.hebflickr.image_viewer;
 
+import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BaseRepository;
-import com.samiamharris.hebflickr.network.FlickrPhotosSearchResponse;
-import com.samiamharris.hebflickr.network.HebServerController;
-import com.samiamharris.hebflickr.network.Model;
-import com.samiamharris.hebflickr.network.Photo;
+import com.samiamharris.hebflickr.model.Model;
+import com.samiamharris.hebflickr.model.Photo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +20,11 @@ public class ImageViewerRepository extends BaseRepository implements ImageViewer
         return imageList;
     }
 
-    public void fetchPapayaImages(OnSuccess onSuccess) {
+    public void fetchPapayaImages(HebServerController.ResponseSuccessErrorHandling onSuccess) {
         HebServerController.fetchPhotos(new HebServerController.ResponseSuccessErrorHandling() {
             @Override
             public void onSuccess(Model model) {
-                FlickrPhotosSearchResponse photoResponse = (FlickrPhotosSearchResponse) model;
-                imageList = photoResponse.photos.photo;
-                onSuccess.onSuccess(imageList);
+                onSuccess.onSuccess(model);
             }
 
             @Override

@@ -1,7 +1,8 @@
 package com.samiamharris.hebflickr.image_viewer;
 
+import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BaseContract;
-import com.samiamharris.hebflickr.network.Photo;
+import com.samiamharris.hebflickr.model.Photo;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface ImageViewerContract {
 
     interface Repository extends BaseContract.Repository {
         List<Photo> getImages();
-        void fetchPapayaImages(OnSuccess onSuccess);
+        void fetchPapayaImages(HebServerController.ResponseSuccessErrorHandling onResult);
     }
 
 }

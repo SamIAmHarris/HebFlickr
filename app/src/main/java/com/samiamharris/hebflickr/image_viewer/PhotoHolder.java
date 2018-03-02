@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.samiamharris.hebflickr.R;
-import com.samiamharris.hebflickr.network.Photo;
+import com.samiamharris.hebflickr.model.Photo;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

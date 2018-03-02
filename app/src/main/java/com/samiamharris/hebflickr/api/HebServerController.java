@@ -1,8 +1,8 @@
-package com.samiamharris.hebflickr.network;
-
-import android.util.Log;
+package com.samiamharris.hebflickr.api;
 
 import com.samiamharris.hebflickr.BuildConfig;
+import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
+import com.samiamharris.hebflickr.model.Model;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -39,7 +39,7 @@ public abstract class HebServerController {
     }
 
     public static void fetchPhotos(ResponseSuccessErrorHandling handler) {
-        client.listPhotos(BuildConfig.FLICK_API_KEY, "papaya")
+        client.listPhotos(BuildConfig.FLICK_API_KEY, "papaya", 60)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FlickrPhotosSearchResponse>() {
@@ -67,8 +67,10 @@ public abstract class HebServerController {
     private interface Client {
 
         @GET("/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1")
-        Observable<FlickrPhotosSearchResponse> listPhotos(@Query("api_key") String apiKey, @Query("tags") String tags);
-
+        Observable<FlickrPhotosSearchResponse> listPhotos(
+                @Query("api_key") String apiKey,
+                @Query("tags") String tags,
+                @Query("per_page") int perPage);
     }
 
 }

@@ -4,14 +4,11 @@ package com.samiamharris.hebflickr.image_viewer;
  * Created by SamIAm on 3/1/18.
  */
 
+import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BasePresenter;
-import com.samiamharris.hebflickr.network.Photo;
+import com.samiamharris.hebflickr.model.FlickrPhotosSearchResponse;
+import com.samiamharris.hebflickr.model.Model;
 
-import java.util.List;
-
-interface OnSuccess {
-        void onSuccess(List<Photo> photoList);
-    }
 
 public class ImageViewerPresenter extends
         BasePresenter<ImageViewerContract.View, ImageViewerContract.Repository>
@@ -27,10 +24,16 @@ public class ImageViewerPresenter extends
             return;
         }
 
-        repo.fetchPapayaImages(new OnSuccess() {
+        repo.fetchPapayaImages(new HebServerController.ResponseSuccessErrorHandling() {
             @Override
-            public void onSuccess(List<Photo> photoList) {
-                view.setData(photoList);
+            public void onSuccess(Model model) {
+                FlickrPhotosSearchResponse flickrPhotosSearchResponse = (FlickrPhotosSearchResponse) model;
+                view.setData(flickrPhotosSearchResponse.photos.photo);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+
             }
         });
     }

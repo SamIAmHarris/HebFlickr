@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.samiamharris.hebflickr.R;
 import com.samiamharris.hebflickr.base.BaseActivity;
-import com.samiamharris.hebflickr.network.Photo;
+import com.samiamharris.hebflickr.model.Photo;
 
 import java.util.List;
 
