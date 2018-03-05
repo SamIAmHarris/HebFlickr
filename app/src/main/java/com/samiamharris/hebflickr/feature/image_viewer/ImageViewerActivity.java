@@ -42,6 +42,8 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
 
     PhotoAdapter photoAdapter;
 
+    Dialog fullSizeDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,14 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
 
         photoRecyclerView.setLayoutManager(gridLayoutManager);
         photoRecyclerView.setAdapter(photoAdapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(fullSizeDialog != null) {
+            fullSizeDialog.dismiss();
+        }
     }
 
     @Override
@@ -102,7 +112,7 @@ public class ImageViewerActivity extends BaseActivity<ImageViewerContract.View, 
 
     @Override
     public void showFullscreenImage(Photo photo) {
-        final Dialog fullSizeDialog = new Dialog(ImageViewerActivity.this, android.R.style.ThemeOverlay_Material);
+        fullSizeDialog = new Dialog(ImageViewerActivity.this, android.R.style.ThemeOverlay_Material);
 
         setupDialogSizeAndStyle(fullSizeDialog);
         setupDialogViews(fullSizeDialog, photo);

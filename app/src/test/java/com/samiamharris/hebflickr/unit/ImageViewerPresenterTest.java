@@ -109,4 +109,15 @@ public class ImageViewerPresenterTest {
 
         return photos;
     }
+
+    @Test
+    public void showFullSizeDialogOnThumbnailClick() {
+        Photo dummyPhoto = new Photo();
+
+        presenter.onBindView();
+
+        presenter.onUserClickThumbnail(dummyPhoto);
+
+        verify(mockView, times(1)).showFullscreenImage(dummyPhoto);
+    }
 }
