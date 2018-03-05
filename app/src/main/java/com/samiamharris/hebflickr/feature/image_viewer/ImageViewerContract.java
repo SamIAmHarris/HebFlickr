@@ -17,10 +17,12 @@ public interface ImageViewerContract {
         void showProgressBar();
         void hideProgressBar();
         void showCallFailedAlert();
+        void showFullscreenImage(Photo photo);
     }
 
     interface Presenter
             extends BaseContract.Presenter<ImageViewerContract.View, ImageViewerContract.Repository> {
+        void onUserClickThumbnail(Photo photo);
     }
 
     interface Repository extends BaseContract.Repository {

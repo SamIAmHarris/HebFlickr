@@ -6,6 +6,7 @@ package com.samiamharris.hebflickr.feature.image_viewer;
 
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.base.BasePresenter;
+import com.samiamharris.hebflickr.model.Photo;
 
 import java.util.List;
 
@@ -48,5 +49,16 @@ public class ImageViewerPresenter extends
 
             view.setData(repo.getImageList());
         }
+    }
+
+    @Override
+    public void onUserClickThumbnail(Photo photo) {
+        ImageViewerContract.View view = getView();
+
+        if(view == null) {
+            return;
+        }
+
+        view.showFullscreenImage(photo);
     }
 }
