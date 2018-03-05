@@ -102,14 +102,6 @@ public class ImageViewerPresenterTest {
         verify(mockView, times(1)).showCallFailedAlert();
     }
 
-    private List<Photo> getFakeDataList() {
-        Photo photo = new Photo();
-        ArrayList<Photo> photos = new ArrayList<>();
-        photos.add(photo);
-
-        return photos;
-    }
-
     @Test
     public void showFullSizeDialogOnThumbnailClick() {
         Photo dummyPhoto = new Photo();
@@ -119,5 +111,13 @@ public class ImageViewerPresenterTest {
         presenter.onUserClickThumbnail(dummyPhoto);
 
         verify(mockView, times(1)).showFullscreenImage(dummyPhoto);
+    }
+
+    private List<Photo> getFakeDataList() {
+        Photo photo = new Photo();
+        ArrayList<Photo> photos = new ArrayList<>();
+        photos.add(photo);
+
+        return photos;
     }
 }
