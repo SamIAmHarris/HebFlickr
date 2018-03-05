@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr;
+package com.samiamharris.hebflickr.unit;
 
 import com.samiamharris.hebflickr.api.HebServerController;
 import com.samiamharris.hebflickr.feature.image_viewer.ImageViewerContract;

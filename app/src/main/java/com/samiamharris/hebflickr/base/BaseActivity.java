@@ -26,14 +26,14 @@ public abstract class BaseActivity<
         final boolean shouldCreatePresenter = viewModel.getPresenter() == null;
 
         if (shouldCreatePresenter) {
-            viewModel.setPresenter(initPresenter());
+            viewModel.setPresenter(lazyInitPresenter());
         }
         presenter = viewModel.getPresenter();
         presenter.attachView((V) this);
 
         if (presenter.getRepo() == null) {
             // Only set repo if one's needed. Otherwise, use persisted repo.
-            presenter.setRepo(initRepository());
+            presenter.setRepo(lazyInitRepository());
         }
         if (shouldCreatePresenter) {
             presenter.onPresenterCreated();
@@ -65,5 +65,9 @@ public abstract class BaseActivity<
             return initRepository();
         }
         return presenter.getRepo();
+    }
+
+    public P getPresenter() {
+        return presenter;
     }
 }

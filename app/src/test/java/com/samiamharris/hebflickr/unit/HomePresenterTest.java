@@ -1,4 +1,4 @@
-package com.samiamharris.hebflickr;
+package com.samiamharris.hebflickr.unit;
 
 import com.samiamharris.hebflickr.feature.home.HomeContract;
 import com.samiamharris.hebflickr.feature.home.HomePresenter;
