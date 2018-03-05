@@ -80,8 +80,8 @@ public class PhotoHolder extends RecyclerView.ViewHolder
             @Override
             public void onSuccess() {
                 progressBar.setVisibility(View.GONE);
-                fullSizeImage.setAlpha(0.0f);
-                fullSizeImage.animate().alpha(1.0f).setDuration(200);
+                fullSizeImage.setAlpha(Constant.PHOTO_INITIAL_ALPHA);
+                fullSizeImage.animate().alpha(Constant.PHOTO_FINAL_ALPHA).setDuration(Constant.FADE_IN_DURATION_TIME);
             }
 
             @Override
@@ -91,5 +91,12 @@ public class PhotoHolder extends RecyclerView.ViewHolder
                 fullSizeDialog.dismiss();
             }
         });
+    }
+
+    private class Constant {
+        private static final int FADE_IN_DURATION_TIME = 200;
+        private static final float PHOTO_INITIAL_ALPHA = 0.0f;
+        private static final float PHOTO_FINAL_ALPHA = 1.0f;
+
     }
 }

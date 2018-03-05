@@ -8,9 +8,9 @@
         android:id="@+id/photo_image"
         android:layout_centerInParent="true"
         android:scaleType="fitXY"
-        android:minHeight="@dimen/photo_size"
-        android:minWidth="@dimen/photo_size"
-        android:layout_margin="1dp"
+        android:minHeight="@dimen/thumbnail_photo_size"
+        android:minWidth="@dimen/thumbnail_photo_size"
+        android:layout_margin="@dimen/grid_item_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
